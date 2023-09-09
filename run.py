@@ -54,8 +54,10 @@ class Battlefield:
                 ships += 1
 
     def create_board(self):
+        print(self.name)
         for x in self.board:
             print(*x)
+        print("-"*30)
 
 
 def main():
@@ -85,5 +87,10 @@ def main():
     user = Battlefield(username, board_size, num_ships)
     user.add_ships()
     user.create_board()
+
+    global computer
+    computer = Battlefield("Computer", board_size, num_ships)
+    computer.add_ships()
+    computer.create_board()
     
 main()
