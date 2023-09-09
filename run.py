@@ -45,16 +45,13 @@ class Battlefield:
         self.board = [["." for x in range(int(board_size))] for y in range(int(board_size))]
 
     def add_ships(self):
-        total = 0
-        for i in self.board:
-            check = j.count("X")
-            total += check
-            print(total)
-        
-        exist_count = self.board.count("X")
-        while exist_count < 5:
-            self.board[randint(0, self.board_size - 1)][randint(0, self.board_size - 1)] = "X"
-            exist_count = self.board.count("X")
+        ships = 0
+        while ships < self.num_ships:
+            x = randint(0, self.board_size - 1)
+            y = randint(0, self.board_size - 1)
+            if self.board[x][y] != "X":
+                self.board[x][y] = "X"
+                ships += 1
 
     def create_board(self):
         for x in self.board:
@@ -89,6 +86,4 @@ def main():
     user.add_ships()
     user.create_board()
     
-
-print(randint(0, 10))
 main()
