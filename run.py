@@ -17,7 +17,7 @@ def validate_board_size(data):
         return False
     return True
 
-def validate_num_of_ships(data):
+def validate_num_ships(data):
     """
     Validates the users input for number of ships
     """
@@ -33,7 +33,15 @@ def validate_num_of_ships(data):
         return False
     return True
 
-
+class Battlefield:
+    """
+    Class that stores data to create and manipulate the game
+    """
+    def __init__(self, name, board_size, num_ships):
+        self.name = name
+        self.board_size = board_size
+        self.num_ships = num_ships
+        self.board = [["." for x in range(int(board_size))] for y in range(int(board_size))]
 
 def main():
     """
@@ -53,10 +61,14 @@ def main():
     
     while True:
         print("Number of battleships ranges from 2-8")
-        num_of_ships = input("Choose how many ships you want each player to have: ")
-        if validate_num_of_ships(num_of_ships):
+        num_ships = input("Choose how many ships you want each player to have: ")
+        if validate_num_ships(num_ships):
             print()
             break
+    
+    global user
+    user = Battlefield(username, board_size, num_ships)
+    
 
 
 main()
