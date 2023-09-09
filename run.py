@@ -38,20 +38,26 @@ class Battlefield:
     """
     Class that stores data to create and manipulate the game
     """
-    def __init__(self, name, board_size, num_ships):
+    def __init__(self, name, board_size, num_ships, type):
         self.name = name
         self.board_size = int(board_size)
         self.num_ships = int(num_ships)
-        self.board = [["." for x in range(int(board_size))] for y in range(int(board_size))]
+        self.type = type
+        self.board = [["." for x in range(self.board_size)] for y in range(self.board_size)]
         self.ships = []
 
     def add_ships(self):
         while len(self.ships) < self.num_ships:
             x = randint(0, self.board_size - 1)
             y = randint(0, self.board_size - 1)
-            if self.board[x][y] != "X":
-                self.board[x][y] = "X"
-                self.ships.append([x, y])
+            if self.type == player:
+                if self.board[x][y] != "X":
+                    self.board[x][y] = "X"
+                    self.ships.append([x, y])
+            else:
+                if self.board[x][y] != "y":
+                    self.board[x][y] = "y"
+                    self.ships.append([x, y])
 
     def create_board(self):
         print(self.name)
@@ -87,12 +93,14 @@ def main():
             break
     
     global user
-    user = Battlefield(username, board_size, num_ships)
+    global player
+    player = player
+    user = Battlefield(username, board_size, num_ships, player)
     user.add_ships()
     user.create_board()
 
     global computer
-    computer = Battlefield("Computer", board_size, num_ships)
+    computer = Battlefield("Computer", board_size, num_ships, )
     computer.add_ships()
     computer.create_board()
     
