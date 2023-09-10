@@ -51,13 +51,14 @@ class Battlefield:
             x = randint(0, self.board_size - 1)
             y = randint(0, self.board_size - 1)
             if self.type == "player":
-                if self.board[x][y] != "X":
-                    self.board[x][y] = "X"
+                if [x, y] not in self.ships:
+                    self.board[x][y] = "@"
                     self.ships.append([x, y])
             else:
-                if self.board[x][y] != "y":
+                if [x, y] not in self.ships:
                     self.board[x][y] = "y"
                     self.ships.append([x, y])
+        print(self.ships)
 
     def create_board(self):
         print(self.name)
