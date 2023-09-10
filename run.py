@@ -50,7 +50,7 @@ class Battlefield:
         while len(self.ships) < self.num_ships:
             x = randint(0, self.board_size - 1)
             y = randint(0, self.board_size - 1)
-            if self.type == player:
+            if self.type == "player":
                 if self.board[x][y] != "X":
                     self.board[x][y] = "X"
                     self.ships.append([x, y])
@@ -93,14 +93,12 @@ def main():
             break
     
     global user
-    global player
-    player = player
-    user = Battlefield(username, board_size, num_ships, player)
+    user = Battlefield(username, board_size, num_ships, "player")
     user.add_ships()
     user.create_board()
 
     global computer
-    computer = Battlefield("Computer", board_size, num_ships, )
+    computer = Battlefield("Computer", board_size, num_ships, "comp")
     computer.add_ships()
     computer.create_board()
     
