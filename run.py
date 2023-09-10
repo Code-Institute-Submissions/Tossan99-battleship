@@ -45,6 +45,7 @@ class Battlefield:
         self.type = type
         self.board = [["." for x in range(self.board_size)] for y in range(self.board_size)]
         self.ships = []
+        self.guesses = []
 
     def add_ships(self):
         while len(self.ships) < self.num_ships:
@@ -56,18 +57,52 @@ class Battlefield:
                     self.ships.append([x, y])
             else:
                 if [x, y] not in self.ships:
-                    self.board[x][y] = "y"
                     self.ships.append([x, y])
         print(self.ships)
 
     def create_board(self):
-        print(self.name)
-        print("  0 1 2 3 4 5 6 7")
+        print(f"{self.name}'s board")
+        print("¤ 0 1 2 3 4 5 6 7")
         i = 0
         for x in self.board:
             print(i, *x)
             i += 1
         print("-"*30)
+    
+    def validate_guess(self, data):
+        """
+        Validates the users input for guess
+        """
+        try:
+            if not data.isdigit():
+                raise ValueError(f"You can only guess a whole number. You have entered: {data}")
+            if int(data) > self.board_size - 1:
+                raise ValueError(f"Largest number you can guess is {self.board_size - 1}. You have guessed: {data}")
+        except ValueError as e:
+            print(f"Invalid input: {e}. Please try again \n")
+            return False
+        return True
+    
+    def player_guess(self):
+        while True:
+            print("guess")
+            x = input("Guess a row: ")
+            if self.validate_guess(x):
+                print()
+                break
+        while True:
+            print("guess")
+            y = input("Guess a column: ")
+            if self.validate_guess(y):
+                print()
+                break
+        guess = [int(x), int(y)]
+        if guess in self.ships:
+            print("hit")
+        else:
+            print("miss")
+        self.guesses.append(guess)
+
 
 
 def main():
@@ -103,4 +138,6 @@ def main():
     computer.add_ships()
     computer.create_board()
     
+    user.player_guess()
+
 main()
