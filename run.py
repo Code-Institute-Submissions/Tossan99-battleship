@@ -97,6 +97,16 @@ class Battlefield:
             return False
         return True
 
+    def check_guesses(self, data):
+        try:
+            if data in self.guesses:
+                raise ValueError(
+                    f"You have already guessed: {data}")
+        except ValueError as e:
+            print(f"Invalid input: {e}. Please try again \n")
+            return False
+        return True
+
     def calculate_hit(self, data):
         if data in self.ships:
             print("hit")
@@ -110,32 +120,24 @@ class Battlefield:
 
     def player_guess(self):
         while True:
-            y = input("Guess a row: ")
-            if self.validate_guess(y):
-                print()
+            while True:
+                y = input("Guess a row: ")
+                if self.validate_guess(y):
+                    break
+            while True:
+                x = input("Guess a column: ")
+                if self.validate_guess(x):
+                    break
+            guess = [int(y), int(x)]
+            if self.check_guesses(guess):
                 break
-        while True:
-            x = input("Guess a column: ")
-            if self.validate_guess(x):
-                print()
-                break
-        guess = [int(y), int(x)]
         self.calculate_hit(guess)
-
+       
     def computer_guess(self):
         y = randint(0, self.board_size - 1)
         x = randint(0, self.board_size - 1)
         guess = [y, x]
         self.calculate_hit(guess)
-
-    def uppdate_board(self):
-        print(f"{self.name}'s board")
-        print("¤ 0 1 2 3 4 5 6 7")
-        i = 0
-        for j in self.board:
-            print(i, *j)
-            i += 1
-        print("-"*30)
 
 
 def main():
@@ -176,10 +178,8 @@ def main():
     while True:
         computer.player_guess()
         user.computer_guess()
-        user.uppdate_board()
-        computer.uppdate_board()
-        if score = 1:
-            break
+        user.create_board()
+        computer.create_board()
 
 
 main()
