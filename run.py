@@ -43,21 +43,21 @@ class Battlefield:
         self.board_size = int(board_size)
         self.num_ships = int(num_ships)
         self.type = type
-        self.board = [["." for x in range(self.board_size)] for y in range(self.board_size)]
+        self.board = [["." for y in range(self.board_size)] for x in range(self.board_size)]
         self.ships = []
         self.guesses = []
 
     def add_ships(self):
         while len(self.ships) < self.num_ships:
-            x = randint(0, self.board_size - 1)
             y = randint(0, self.board_size - 1)
+            x = randint(0, self.board_size - 1)
             if self.type == "player":
-                if [x, y] not in self.ships:
+                if [y, x] not in self.ships:
                     self.board[x][y] = "@"
-                    self.ships.append([x, y])
+                    self.ships.append([y, x])
             else:
-                if [x, y] not in self.ships:
-                    self.ships.append([x, y])
+                if [y, x] not in self.ships:
+                    self.ships.append([y, x])
         print(self.ships)
 
     def create_board(self):
@@ -84,7 +84,6 @@ class Battlefield:
         return True
     
     def calculate_hit(self, data):
-        print(data)
         if data in self.ships:
             print("hit")
             self.board[data[0]][data[1]] = "X"
@@ -96,18 +95,23 @@ class Battlefield:
     def player_guess(self):
         while True:
             print("guess")
-            x = input("Guess a row: ")
-            if self.validate_guess(x):
+            y = input("Guess a row: ")
+            if self.validate_guess(y):
                 print()
                 break
         while True:
             print("guess")
-            y = input("Guess a column: ")
-            if self.validate_guess(y):
+            x = input("Guess a column: ")
+            if self.validate_guess(x):
                 print()
                 break
-        guess = [int(x), int(y)]
+        guess = [int(y), int(x)]
         self.calculate_hit(guess)
+    
+    def computer_guess(self):
+        y = randint(0, self.board_size - 1)
+        x = randint(0, self.board_size - 1)
+        guess = [y, x]
     
     def uppdate_board(self):
         print(f"{self.name}'s board")
