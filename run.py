@@ -64,8 +64,8 @@ class Battlefield:
         print(f"{self.name}'s board")
         print("¤ 0 1 2 3 4 5 6 7")
         i = 0
-        for x in self.board:
-            print(i, *x)
+        for j in self.board:
+            print(i, *j)
             i += 1
         print("-"*30)
     
@@ -83,6 +83,16 @@ class Battlefield:
             return False
         return True
     
+    def calculate_hit(self, data):
+        print(data)
+        if data in self.ships:
+            print("hit")
+            self.board[data[0]][data[1]] = "X"
+        else:
+            print("miss")
+            self.board[data[0]][data[1]] = "-"
+        self.guesses.append(data)
+  
     def player_guess(self):
         while True:
             print("guess")
@@ -97,11 +107,16 @@ class Battlefield:
                 print()
                 break
         guess = [int(x), int(y)]
-        if guess in self.ships:
-            print("hit")
-        else:
-            print("miss")
-        self.guesses.append(guess)
+        self.calculate_hit(guess)
+    
+    def uppdate_board(self):
+        print(f"{self.name}'s board")
+        print("¤ 0 1 2 3 4 5 6 7")
+        i = 0
+        for j in self.board:
+            print(i, *j)
+            i += 1
+        print("-"*30)
 
 
 
@@ -138,6 +153,8 @@ def main():
     computer.add_ships()
     computer.create_board()
     
-    user.player_guess()
+    computer.player_guess()
+    user.uppdate_board()
+    computer.uppdate_board()
 
 main()
