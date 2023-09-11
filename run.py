@@ -109,12 +109,14 @@ class Battlefield:
 
     def calculate_hit(self, data):
         if data in self.ships:
-            print(f"{self.name} hit!")
             self.board[data[0]][data[1]] = "X"
-            self.score += 1
+            self.guesses.append(data)
+            print("true")
+            return 1
         else:
-            print(f"{self.name} missed!")
+            print("missed!")
             self.board[data[0]][data[1]] = "-"
+        print("guess appended")
         self.guesses.append(data)
 
     def player_guess(self):
@@ -138,6 +140,10 @@ class Battlefield:
         guess = [y, x]
         self.calculate_hit(guess)
     
+    def give_score(self):
+        print(f"{self.name} hit!")
+        self.score += 1
+
     def check_score(self):
         if self.score >= self.num_ships:
             return True
@@ -180,8 +186,11 @@ def main():
     computer.create_board()
 
     while True:
-        computer.player_guess()
-        user.computer_guess()
+        if computer.player_guess() == 1:
+            print("returned")
+            user.give_score()
+        if user.computer_guess():
+            computer.give_score()
         user.create_board()
         computer.create_board()
         if user.check_score() or computer.check_score():
@@ -198,3 +207,4 @@ noted bugs
 
 #Points is given to computer instead of the player
 #Also says computer hit when player hit
+#Hits didnt register in the guesses list
