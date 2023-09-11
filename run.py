@@ -1,8 +1,6 @@
 from random import randint
 import random
 
-global score
-score = 0
 
 def validate_board_size(data):
     """
@@ -58,6 +56,7 @@ class Battlefield:
                       for x in range(self.board_size)]
         self.ships = []
         self.guesses = []
+        self.score = 0
 
     def add_ships(self):
         while len(self.ships) < self.num_ships:
@@ -73,7 +72,8 @@ class Battlefield:
         print(self.ships)
 
     def create_board(self):
-        print(f"{self.name}'s board")
+        print(f"{self.name}'s board. Score: {self.score}")
+        print("-"*30)
         print("¤ 0 1 2 3 4 5 6 7")
         i = 0
         for j in self.board:
@@ -109,12 +109,11 @@ class Battlefield:
 
     def calculate_hit(self, data):
         if data in self.ships:
-            print("hit")
+            print(f"{self.name} hit!")
             self.board[data[0]][data[1]] = "X"
-            global score
-            score += 1
+            self.score += 1
         else:
-            print("miss")
+            print(f"{self.name} missed!")
             self.board[data[0]][data[1]] = "-"
         self.guesses.append(data)
 
@@ -132,12 +131,17 @@ class Battlefield:
             if self.check_guesses(guess):
                 break
         self.calculate_hit(guess)
-       
+
     def computer_guess(self):
         y = randint(0, self.board_size - 1)
         x = randint(0, self.board_size - 1)
         guess = [y, x]
         self.calculate_hit(guess)
+    
+    def check_score(self):
+        if self.score >= self.num_ships:
+            return True
+
 
 
 def main():
@@ -180,6 +184,17 @@ def main():
         user.computer_guess()
         user.create_board()
         computer.create_board()
+        if user.check_score() or computer.check_score():
+            break
+    print("Game over")
 
 
 main()
+
+
+"""
+noted bugs
+"""
+
+#Points is given to computer instead of the player
+#Also says computer hit when player hit
