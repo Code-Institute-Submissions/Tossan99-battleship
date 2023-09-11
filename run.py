@@ -112,12 +112,13 @@ class Battlefield:
             self.board[data[0]][data[1]] = "X"
             self.guesses.append(data)
             print("true")
-            return 1
+            return True
         else:
             print("missed!")
             self.board[data[0]][data[1]] = "-"
-        print("guess appended")
-        self.guesses.append(data)
+            self.guesses.append(data)
+            print("false")
+            return False
 
     def player_guess(self):
         while True:
@@ -132,7 +133,8 @@ class Battlefield:
             guess = [int(y), int(x)]
             if self.check_guesses(guess):
                 break
-        self.calculate_hit(guess)
+        if self.calculate_hit(guess):
+            return True
 
     def computer_guess(self):
         y = randint(0, self.board_size - 1)
@@ -186,7 +188,7 @@ def main():
     computer.create_board()
 
     while True:
-        if computer.player_guess() == 1:
+        if computer.player_guess():
             print("returned")
             user.give_score()
         if user.computer_guess():
