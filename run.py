@@ -31,7 +31,7 @@ def validate_play_again(data):
             raise ValueError(
                 f"You can only answer 'yes' or 'no'. You have answered: {data}")
     except ValueError as e:
-        print(f"Invalid input: {e}. Please try again \n")
+        print(f"\nInvalid input: {e}. Please try again \n")
         return False
     return True
 
@@ -53,6 +53,9 @@ class Battlefield:
         self.score = 0
 
     def add_ships(self):
+        """
+        Add ships in the form of coordinates to a list
+        """
         while len(self.ships) < self.num_ships:
             y = randint(0, self.board_size - 1)
             x = randint(0, self.board_size - 1)
@@ -67,6 +70,9 @@ class Battlefield:
         print(self.ships)
 
     def create_board(self):
+        """
+        Creates the battlefield and uppdates it each turn
+        """
         print(f" \n{self.name}'s board\nScore: {self.score}")
         print("-"*30)
         print("¤ 0 1 2 3 4 5 6 7")
@@ -74,7 +80,8 @@ class Battlefield:
         for j in self.board:
             print(i, *j)
             i += 1
-        print("-"*30 " \n")
+        print("-"*30)
+        print()
 
     def validate_guess(self, data):
         """
@@ -93,6 +100,9 @@ class Battlefield:
         return True
 
     def check_guesses(self, data):
+        """
+        Checks if the users guess already have been guessed
+        """
         try:
             if data in self.guesses:
                 raise ValueError(
@@ -103,6 +113,10 @@ class Battlefield:
         return True
 
     def calculate_hit(self, data):
+        """
+        Calculate if the guess is correct or not
+        Appends the guess to the llist of guesses
+        """
         if data in self.ships:
             self.board[data[0]][data[1]] = "X"
             self.guesses.append(data)
@@ -113,6 +127,10 @@ class Battlefield:
             return False
 
     def player_guess(self):
+        """
+        Takes input from the user and calls functions to 
+        validate input, check guess and calculate hit or miss
+        """
         while True:
             while True:
                 y = input("Guess a row: ")
@@ -132,6 +150,10 @@ class Battlefield:
             return True
 
     def computer_guess(self):
+        """
+        Generate a random coordinates and calls
+        function to calculate hit or miss
+        """
         y = randint(0, self.board_size - 1)
         x = randint(0, self.board_size - 1)
         guess = [y, x]
@@ -160,8 +182,9 @@ def main():
         board_size = input(
             "Enter a number between 4-8: ")
         if validate_input(board_size, 4, 8):
+            print()
             break
-        print()
+
 
     while True:
         print("Choose how manny battleships you want each player to have")
