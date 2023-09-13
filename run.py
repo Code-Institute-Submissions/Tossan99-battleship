@@ -2,40 +2,34 @@ from random import randint
 import random
 
 
-def validate_board_size(data):
+def validate_input(data, minn, maxx):
     """
-    Validates the users input for board size
+    Validates the users inpsrd sizeetting up the Battlefield
     """
     try:
         if not data.isdigit():
             raise ValueError(
                 f"You can only enter whole numbers. You have entered: {data}")
-        if int(data) < 4:
+        if int(data) < minn:
             raise ValueError(
-                f"Smalest battlefield is 4x4. You have entered: {data}")
-        if int(data) > 8:
+                f"Lowest number you can choose is {minn}. You have entered: {data}")
+        if int(data) > maxx:
             raise ValueError(
-                f"Largest battlefield is 8x8. You have entered: {data}")
+                f"Highest number you can choose is {maxx}. You have entered: {data}")
     except ValueError as e:
         print(f"Invalid input: {e}. Please try again \n")
         return False
     return True
 
 
-def validate_num_ships(data):
+def validate_play_again(data):
     """
-    Validates the users input for number of ships
+    Validates the users input for play again
     """
     try:
-        if not data.isdigit():
+        if data != "yes" and data != "no":
             raise ValueError(
-                f"You can only enter whole numbers. You have entered: {data}")
-        if int(data) < 2:
-            raise ValueError(
-                f"Least amount of battleships is 2. You have entered: {data}")
-        if int(data) > 8:
-            raise ValueError(
-                f"Most amount of battleships is 8. You have entered: {data}")
+                f"You can only answer 'yes' or 'no'. You have answered: {data}")
     except ValueError as e:
         print(f"Invalid input: {e}. Please try again \n")
         return False
@@ -156,7 +150,6 @@ def main():
     """
     Calls all functions
     """
-
     print("Welcome to Battleships")
     username = input("Enter your username: ")
     print()
@@ -165,39 +158,53 @@ def main():
         print("Battlefield size ranges from 4x4-8x8")
         board_size = input(
             "Enter a number between 4-8 to choose your battlefield size: ")
-        if validate_board_size(board_size):
-            print()
+        if validate_input(board_size, 4, 8):
             break
+        print()
 
     while True:
         print("Number of battleships ranges from 2-8")
         num_ships = input(
             "Choose how many ships you want each player to have: ")
-        if validate_num_ships(num_ships):
-            print()
+        if validate_input(num_ships, 2, 8):
             break
-
-    global user
-    user = Battlefield(username, board_size, num_ships, "player")
-    user.add_ships()
-    user.create_board()
-
+        print()
+    
     global computer
     computer = Battlefield("Computer", board_size, num_ships, "comp")
+    global user
+    user = Battlefield(username, board_size, num_ships, "player")
+    
+    user.add_ships()
+    user.create_board()
     computer.add_ships()
     computer.create_board()
 
     while True:
         if computer.player_guess():
-            print("returned")
             user.give_score()
         if user.computer_guess():
             computer.give_score()
         user.create_board()
         computer.create_board()
-        if user.check_score() or computer.check_score():
+        if user.check_score():
+            print("You Won!\n")
             break
-    print("Game over")
+        elif computer.check_score():
+            print("You Lost!\n")
+            break
+    
+    while True:
+        print("Do you want to play again?")
+        play_again = input("yes or no?: ").lower()
+        if validate_play_again(play_again):
+            break
+        print()
+
+    if play_again == "yes":
+        main()
+    if play_again == "no":
+        print("Thank you for playing Battleships!\n")
 
 
 main()
@@ -207,6 +214,15 @@ main()
 noted bugs
 """
 
+
+#Någon skillnad på if och elif
 #Points is given to computer instead of the player
+"""
+def give_score(self):
+        print(f"{self.name} hit!")
+        self.score += 1
+"""
 #Also says computer hit when player hit
-#Hits didnt regisfdfdfter in the guesses list
+#Hits didnt register in the guesses list Needed to append for both since i did return
+#column numbers went up to 7 for all board sizes
+#you can guess several 0's
