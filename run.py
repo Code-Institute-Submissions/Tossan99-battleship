@@ -209,4 +209,4 @@ noted bugs
 
 #Points is given to computer instead of the player
 #Also says computer hit when player hit
-#Hits didnt register in the guesses list
+#Hits didnt regisfdfdfter in the guesses list
