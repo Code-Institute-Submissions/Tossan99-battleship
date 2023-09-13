@@ -4,18 +4,18 @@ import random
 
 def validate_input(data, minn, maxx):
     """
-    Validates the users inpsrd sizeetting up the Battlefield
+    Validates the users input for setting up the battlefield
     """
     try:
         if not data.isdigit():
             raise ValueError(
-                f"You can only enter whole numbers. You have entered: {data}")
+                f"You can only enter one whole number. You have entered: {data}")
         if int(data) < minn:
             raise ValueError(
-                f"Lowest number you can choose is {minn}. You have entered: {data}")
+                f"Smallest number you can choose is {minn}. You have entered: {data}")
         if int(data) > maxx:
             raise ValueError(
-                f"Highest number you can choose is {maxx}. You have entered: {data}")
+                f"Biggest number you can choose is {maxx}. You have entered: {data}")
     except ValueError as e:
         print(f"Invalid input: {e}. Please try again \n")
         return False
@@ -63,31 +63,32 @@ class Battlefield:
             else:
                 if [y, x] not in self.ships:
                     self.ships.append([y, x])
+        
         print(self.ships)
 
     def create_board(self):
-        print(f"{self.name}'s board. Score: {self.score}")
+        print(f" \n{self.name}'s board\nScore: {self.score}")
         print("-"*30)
         print("¤ 0 1 2 3 4 5 6 7")
         i = 0
         for j in self.board:
             print(i, *j)
             i += 1
-        print("-"*30)
+        print("-"*30 " \n")
 
     def validate_guess(self, data):
         """
-        Validates the users input for guess
+        Validates the users input when guessing rows and columns
         """
         try:
             if not data.isdigit():
                 raise ValueError(
-                    f"You can only guess a whole number. You have entered: {data}")
+                    f"You can only guess one whole number. You have entered: {data}")
             if int(data) > self.board_size - 1:
                 raise ValueError(
-                    f"Largest number you can guess is {self.board_size - 1}. You guessed: {data}")
+                    f"Biggest number you can guess is {self.board_size - 1}. You guessed: {data}")
         except ValueError as e:
-            print(f"Invalid input: {e}. Please try again \n")
+            print(f"Invalid input: {e}. Please try again\n")
             return False
         return True
 
@@ -97,7 +98,7 @@ class Battlefield:
                 raise ValueError(
                     f"You have already guessed: {data}")
         except ValueError as e:
-            print(f"Invalid input: {e}. Please try again \n")
+            print(f"Invalid input: {e}. Please try again\n")
             return False
         return True
 
@@ -105,13 +106,10 @@ class Battlefield:
         if data in self.ships:
             self.board[data[0]][data[1]] = "X"
             self.guesses.append(data)
-            print("true")
             return True
         else:
-            print("missed!")
-            self.board[data[0]][data[1]] = "-"
+            self.board[data[0]][data[1]] = "0"
             self.guesses.append(data)
-            print("false")
             return False
 
     def player_guess(self):
@@ -119,12 +117,15 @@ class Battlefield:
             while True:
                 y = input("Guess a row: ")
                 if self.validate_guess(y):
+                    print()
                     break
             while True:
                 x = input("Guess a column: ")
                 if self.validate_guess(x):
+                    print()
                     break
             guess = [int(y), int(x)]
+            print(f"You have guessed coordinates: {y}, {x}")
             if self.check_guesses(guess):
                 break
         if self.calculate_hit(guess):
@@ -148,28 +149,28 @@ class Battlefield:
 
 def main():
     """
-    Calls all functions
+    Calls all functions to run the game loop
     """
     print("Welcome to Battleships")
     username = input("Enter your username: ")
     print()
 
     while True:
-        print("Battlefield size ranges from 4x4-8x8")
+        print("Choose the size of the battlefield you want to play on")
         board_size = input(
-            "Enter a number between 4-8 to choose your battlefield size: ")
+            "Enter a number between 4-8: ")
         if validate_input(board_size, 4, 8):
             break
         print()
 
     while True:
-        print("Number of battleships ranges from 2-8")
+        print("Choose how manny battleships you want each player to have")
         num_ships = input(
-            "Choose how many ships you want each player to have: ")
+            "Enter a number between 2-8: ")
         if validate_input(num_ships, 2, 8):
+            print()
             break
-        print()
-    
+
     global computer
     computer = Battlefield("Computer", board_size, num_ships, "comp")
     global user
@@ -198,8 +199,8 @@ def main():
         print("Do you want to play again?")
         play_again = input("yes or no?: ").lower()
         if validate_play_again(play_again):
+            print()
             break
-        print()
 
     if play_again == "yes":
         main()
