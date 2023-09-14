@@ -46,8 +46,7 @@ class Battlefield:
         self.board_size = int(board_size)
         self.num_ships = int(num_ships)
         self.type = type
-        self.board = [["." for y in range(self.board_size)]
-                      for x in range(self.board_size)]
+        self.board = [["." for y in range(self.board_size)]for x in range(self.board_size)]
         self.ships = []
         self.guesses = []
         self.score = 0
@@ -75,11 +74,12 @@ class Battlefield:
         """
         print(f" \n{self.name}'s board\nScore: {self.score}")
         print("-"*30)
-        print("¤ 0 1 2 3 4 5 6 7")
-        i = 0
-        for j in self.board:
-            print(i, *j)
-            i += 1
+        column_num = [column for column in range(len(self.board))]
+        print("¤", *column_num)
+        row_num = 0
+        for row in self.board:
+            print(row_num, *row)
+            row_num += 1
         print("-"*30)
         print()
 
@@ -230,9 +230,10 @@ def main():
     if play_again == "no":
         print("Thank you for playing Battleships!\n")
 
+#main()
 
-main()
-
+column_num = [column for column in range(6)]
+print(*column_num)
 
 """
 noted bugs
