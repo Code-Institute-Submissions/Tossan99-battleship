@@ -17,7 +17,7 @@ def validate_input(data, minn, maxx):
             raise ValueError(
                 f"Biggest number you can choose is {maxx}. You have entered: {data}")
     except ValueError as e:
-        print(f"Invalid input: {e}. Please try again \n")
+        print(f"\nInvalid input: {e}. Please try again \n")
         return False
     return True
 
@@ -73,14 +73,14 @@ class Battlefield:
         Creates the battlefield and uppdates it each turn
         """
         print(f" \n{self.name}'s board\nScore: {self.score}")
-        print("-"*30)
+        print("-"*20)
         column_num = [column for column in range(len(self.board))]
         print("¤", *column_num)
         row_num = 0
         for row in self.board:
             print(row_num, *row)
             row_num += 1
-        print("-"*30)
+        print("-"*20)
         print()
 
     def validate_guess(self, data):
@@ -95,7 +95,7 @@ class Battlefield:
                 raise ValueError(
                     f"Biggest number you can guess is {self.board_size - 1}. You guessed: {data}")
         except ValueError as e:
-            print(f"Invalid input: {e}. Please try again\n")
+            print(f"\nInvalid input: {e}. Please try again\n")
             return False
         return True
 
@@ -143,25 +143,36 @@ class Battlefield:
                     print()
                     break
             guess = [int(y), int(x)]
-            print(f"You have guessed coordinates: {y}, {x}")
+            print(f"You have guessed coordinates: {y}, {x}\n")
             if self.check_guesses(guess):
                 break
         if self.calculate_hit(guess):
             return True
+        else:
+            return False
 
     def computer_guess(self):
         """
         Generate a random coordinates and calls
         function to calculate hit or miss
         """
-        y = randint(0, self.board_size - 1)
-        x = randint(0, self.board_size - 1)
-        guess = [y, x]
-        self.calculate_hit(guess)
+        while True:
+            y = randint(0, self.board_size - 1)
+            x = randint(0, self.board_size - 1)
+            guess = [y, x]
+            if guess not in self.guesses:
+                break
+        if self.calculate_hit(guess):
+            return True
+        else:
+            return False
     
-    def give_score(self):
-        print(f"{self.name} hit!")
+    def hit(self):
+        print(f"{self.name} hit!\n")
         self.score += 1
+
+    def miss(self):
+        print(f"{self.name} missed!\n")
 
     def check_score(self):
         if self.score >= self.num_ships:
@@ -206,11 +217,18 @@ def main():
 
     while True:
         if computer.player_guess():
-            user.give_score()
+            user.hit()
+        else:
+            user.miss()
+
         if user.computer_guess():
-            computer.give_score()
+            computer.hit()
+        else:
+            computer.miss()
+
         user.create_board()
         computer.create_board()
+
         if user.check_score():
             print("You Won!\n")
             break
@@ -230,10 +248,7 @@ def main():
     if play_again == "no":
         print("Thank you for playing Battleships!\n")
 
-#main()
-
-column_num = [column for column in range(6)]
-print(*column_num)
+main()
 
 """
 noted bugs
@@ -251,3 +266,4 @@ def give_score(self):
 #Hits didnt register in the guesses list Needed to append for both since i did return
 #column numbers went up to 7 for all board sizes
 #you can guess several 0's
+#computer could guess same guess
