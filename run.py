@@ -1,5 +1,6 @@
 from random import randint
 import random
+import messages
 
 
 def validate_input(data, minn, maxx):
@@ -188,37 +189,20 @@ def main():
     """
     Calls all functions to run the game loop
     """
-    print("--------------------------------------------------------------------------------")
-    print("--------------------------------------------------------------------------------")
-    print("               _      ________   _________  __  _______  __________  ")
-    print("              | | /| / / __/ /  / ___/ __ \/  |/  / __/ /_  __/ __ \ ")
-    print("              | |/ |/ / _// /__/ /__/ /_/ / /|_/ / _/    / / / /_/ / ")
-    print("              |__/|__/___/____/\___/\____/_/  /_/___/   /_/  \____/  ")
-    print("                      __________  ___________   _  ______ ")
-    print("                     /_  __/ __ \/ __/ __/ _ | / |/ / __/ ")
-    print("                      / / / /_/ /\ \_\ \/ __ |/    /\ \   ")
-    print("                     /_/  \____/___/___/_/ |_/_/|_/___/   ")
-    print("    ___  ___ ______________   __________ _________    ________   __  _______  __")
-    print("   / _ )/ _ /_  __/_  __/ /  / __/ __/ // /  _/ _ \  / ___/ _ | /  |/  / __/ / /")
-    print("  / _  / __ |/ /   / / / /__/ _/_\ \/ _  // // ___/ / (_ / __ |/ /|_/ / _/  /_/ ")
-    print(" /____/_/ |_/_/   /_/ /____/___/___/_//_/___/_/     \___/_/ |_/_/  /_/___/ (_)  ")
-    print()
-    print("--------------------------------------------------------------------------------")
-    print("--------------------------------------------------------------------------------")
+    print(messages.welcome)
     while True:
-        print(" \nDo you want to read the game rules?")
+        print("\n Do you want to read the game rules?")
         read_gamerules = input(" Yes or No?: ").lower()
-        if validate_answer(x):
+        if validate_answer(read_gamerules):
             print()
             break
     if read_gamerules == "yes":
         print(" GAME RULES")
-        print(" The object of Battleship is to try and sink all of the")
-        print(" other player's ships before they sink all of yours.")
+        print(" The object of Battleship is to try and sink all of your")
+        print(" opponents ships before they sink all of yours.")
         print(" Try to hit them by entering coordinates on the board.")
-        print(" When all your opponents ships have been hit, you win.")
-        print(" @ = Your ships  X = Ships that been hit  / = Missed shots")
-        print(" ")
+        print(" You win When all your opponents ships have been hit.")
+        print(" @ = Your ships  X = Ships that been hit  / = Missed shots\n")
 
     username = input(" Enter your username: ")
     print()
@@ -262,30 +246,14 @@ def main():
         computer.create_board()
 
         if user.check_score():
-            print("--------------------------------------------------------------------------------")
-            print("--------------------------------------------------------------------------------")
-            print("               __  ______  __  __  _      _______  __  __ ")
-            print("               \ \/ / __ \/ / / / | | /| / /  _/ |/ / / / ")
-            print("                \  / /_/ / /_/ /  | |/ |/ // //    / /_/  ")
-            print("                /_/\____/\____/   |__/|__/___/_/|_/ (_)   ")
-            print()
-            print("--------------------------------------------------------------------------------")
-            print("--------------------------------------------------------------------------------")
+            print(messages.win)
             break
         elif computer.check_score():
-            print("--------------------------------------------------------------------------------")
-            print("--------------------------------------------------------------------------------")
-            print("               __  ______  __  __  __   ____  ________  __ ")
-            print("               \ \/ / __ \/ / / / / /  / __ \/ __/ __/ / / ")
-            print("                \  / /_/ / /_/ / / /__/ /_/ /\ \/ _/  /_/  ")
-            print("                /_/\____/\____/ /____/\____/___/___/ (_)   ")
-            print()
-            print("--------------------------------------------------------------------------------")
-            print("--------------------------------------------------------------------------------")
+            print(messages.lose)
             break
     
     while True:
-        print(" \nDo you want to play again?")
+        print("\n Do you want to play again?")
         play_again = input(" Yes or No?: ").lower()
         if validate_answer(play_again):
             print()
@@ -294,19 +262,8 @@ def main():
     if play_again == "yes":
         main()
     if play_again == "no":
-        print("--------------------------------------------------------------------------------")
-        print("--------------------------------------------------------------------------------")
-        print("                ________ _____   _  ____ __  __  ______  __  __ ")
-        print("               /_  __/ // / _ | / |/ / //_/  \ \/ / __ \/ / / / ")
-        print("                / / / _  / __ |/    / ,<      \  / /_/ / /_/ /  ")
-        print("               /_/ /_//_/_/ |_/_/|_/_/|_|     /_/\____/\____/   ")
-        print("            ________  ___    ___  __   _____  _______  _______  __ ")
-        print("           / __/ __ \/ _ \  / _ \/ /  / _ \ \/ /  _/ |/ / ___/ / / ")
-        print("          / _// /_/ / , _/ / ___/ /__/ __ |\  // //    / (_ / /_/  ")
-        print("         /_/  \____/_/|_| /_/  /____/_/ |_|/_/___/_/|_/\___/ (_)   ")
-        print()
-        print("--------------------------------------------------------------------------------")
-        print("--------------------------------------------------------------------------------")
+        print(messages.thank_you)
+
 
 main()
 
