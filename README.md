@@ -1,32 +1,97 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# FLAG QUIZ
 
-Welcome,
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
 
-## Reminders
+Visit []()
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+![](assets/readme-images)
 
 ---
 
-Happy coding!
+## CONTENTS
+
+
+---
+
+## Design
+
+### Wireframes
+
+---
+
+## Features
+
+
+### Favicon
+
+The page have a simple favicon of a blue flag
+
+![Favicon](assets/readme-images)
+
+### Logo
+
+![Logo](assets/readme-images)
+
+### Features Left to Implement
+
+### Accessibility
+
+---
+
+## Deployment & Local Development
+
+### Deployment
+
+The site is deployed using GitHub Pages. Visit the deployed site [here](https://tossan99.github.io/flag-quiz2/). To deploy using GitHub pages:
+
+1. login or Sign Up to GitHub.
+2. open the project repository.
+3. Click on "Settings" on the navigation bar under the repository title.
+4. Click on "Pages" in the left hand navigation panel.
+5. Under "Source", choose which branch to deploy. This should be Main for newer repositories (older repositories may still use Master).
+6. Choose which folder to deploy from, usually "/root".
+7. Click "Save", then wait for it to be deployed. It can take some time for the page to be fully deployed.
+8. Your URL will be displayed above "Source".
+
+### Local Development
+
+#### How to Fork
+
+To fork the repository:
+
+1. Log in (or sign up) to Github.
+2. Go to the repository for this project, [Flag Quiz](https://github.com/Tossan99/flag-quiz2.git).
+3. Click the Fork button in the top right corner.
+
+#### How to Clone
+
+To clone the repository:
+
+1. Log in (or sign up) to GitHub.
+2. Go to the repository for this project, [Flag Quiz](https://github.com/Tossan99/flag-quiz2.git).
+3. Click on the code button, select whether you would like to clone with HTTPS, SSH or GitHub CLI and copy the link shown.
+4. Open the terminal in your code editor and change the current working directory to the location you want to use for the cloned directory.
+5. Type 'git clone' into the terminal and then paste the link you copied in step 3. Press enter.
+
+---
+
+## Testing
+
+Go to this separate [testing page](#) to read about testing
+
+### Validator testing
+
+- Python3
+  - All html pages have passed through the [Python3 validator]() 
+
+### Unfixed Bugs
+
+---
+
+## Credits
+
+### Code Used
+
+### Content
+
+### Media
