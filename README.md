@@ -1,10 +1,10 @@
-# FLAG QUIZ
+# TOSSANS BATTLESHIP GAME
 
 
 
-Visit []()
+Visit [TOSSANS BATTLESHIP GAME](https://tossans-battleships-game-b3734a738de1.herokuapp.com/)
 
-![](assets/readme-images)
+![](assets/readme-images/welcome.jpg)
 
 ---
 
