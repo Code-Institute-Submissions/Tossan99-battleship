@@ -10,13 +10,16 @@ def validate_input(data, min, max):
     try:
         if not data.isdigit():
             raise ValueError(
-                f"You can only enter one whole number.\n You have entered: {data}")
+                f"You can only enter one whole number."
+                f"\n You have entered: {data}")
         if int(data) < min:
             raise ValueError(
-                f"Smallest number you can enter is {min}.\n You have entered: {data}")
+                f"Smallest number you can enter is {min}."
+                f"\n You have entered: {data}")
         if int(data) > max:
             raise ValueError(
-                f"Biggest number you can enter is {max}.\n You have entered: {data}")
+                f"Biggest number you can enter is {max}."
+                f"\n You have entered: {data}")
     except ValueError as e:
         print(f"\n Invalid input: {e}. Please try again.")
         return False
@@ -30,7 +33,8 @@ def validate_answer(data):
     try:
         if data != "yes" and data != "no":
             raise ValueError(
-                f"You can only answer 'yes' or 'no'. \n You have answered: {data}")
+                f"You can only answer 'yes' or 'no'."
+                f"\n You have answered: {data}")
     except ValueError as e:
         print(f"\n Invalid input: {e}. Please try again.")
         return False
@@ -47,7 +51,8 @@ class Battlefield:
         self.board_size = int(board_size)
         self.num_ships = int(num_ships)
         self.type = type
-        self.board = [["." for y in range(self.board_size)]for x in range(self.board_size)]
+        self.board = [["." for y in range(self.board_size)]
+                      for x in range(self.board_size)]
         self.ships = []
         self.guesses = []
         self.score = 0
@@ -87,10 +92,12 @@ class Battlefield:
         try:
             if not data.isdigit():
                 raise ValueError(
-                    f"You can only enter one whole number.\n You have entered: {data}")
+                    f"You can only enter one whole number."
+                    f"\n You have entered: {data}")
             if int(data) > self.board_size - 1:
                 raise ValueError(
-                    f"Biggest number you can enter is {self.board_size - 1}.\n You entered: {data}")
+                    f"Biggest number you can enter is {self.board_size - 1}."
+                    f"\n You entered: {data}")
         except ValueError as e:
             print(f"\n Invalid input: {e}. Please try again.")
             return False
@@ -214,9 +221,7 @@ def main():
         if validate_input(num_ships, 2, 8):
             break
 
-    global computer
     computer = Battlefield("Computer", board_size, num_ships, "comp")
-    global user
     user = Battlefield(username, board_size, num_ships, "player")
 
     user.add_ships()
@@ -258,22 +263,3 @@ def main():
 
 
 main()
-
-"""
-noted bugs
-"""
-
-
-# Någon skillnad på if och elif
-# Points is given to computer instead of the player
-"""
-def give_score(self):
-        print(f"{self.name} hit!")
-        self.score += 1
-"""
-# Also says computer hit when player hit
-# Hits didnt register in the guesses list Needed to
-# append for both since i did return
-# column numbers went up to 7 for all board sizes
-# you can guess several 0's
-# computer could guess same guess
