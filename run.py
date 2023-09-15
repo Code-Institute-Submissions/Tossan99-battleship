@@ -3,36 +3,36 @@ import random
 import messages
 
 
-def validate_input(data, minn, maxx):
+def validate_input(data, min, max):
     """
-    Validates the users input for setting up the battlefield
+    Validates users input for setting up the battlefield
     """
     try:
         if not data.isdigit():
             raise ValueError(
                 f"You can only enter one whole number. You have entered: {data}")
-        if int(data) < minn:
+        if int(data) < min:
             raise ValueError(
-                f"Smallest number you can choose is {minn}. You have entered: {data}")
-        if int(data) > maxx:
+                f"Smallest number you can enter is {min}. You have entered: {data}")
+        if int(data) > max:
             raise ValueError(
-                f"Biggest number you can choose is {maxx}. You have entered: {data}")
+                f"Biggest number you can enter is {max}. You have entered: {data}")
     except ValueError as e:
-        print(f"\n Invalid input: {e}. Please try again \n")
+        print(f"\n Invalid input: {e}. Please try again")
         return False
     return True
 
 
 def validate_answer(data):
     """
-    Validates the users input for play again
+    Validates users input answering 'yes' or 'no'
     """
     try:
         if data != "yes" and data != "no":
             raise ValueError(
                 f"You can only answer 'yes' or 'no'. You have answered: {data}")
     except ValueError as e:
-        print(f"\n Invalid input: {e}. Please try again \n")
+        print(f"\n Invalid input: {e}. Please try again")
         return False
     return True
 
@@ -54,7 +54,8 @@ class Battlefield:
 
     def add_ships(self):
         """
-        Add ships in the form of coordinates to a list
+        Adds visible ships to the players board
+        Adds locations of the ships, in form of coordinates, to a list
         """
         while len(self.ships) < self.num_ships:
             y = randint(0, self.board_size - 1)
@@ -67,18 +68,17 @@ class Battlefield:
                 if [y, x] not in self.ships:
                     self.ships.append([y, x])
 
-    def create_board(self):
+    def render_board(self):
         """
-        Creates the battlefield and uppdates it each turn
+        Renders the board each turn
         """
-        print(f" {self.name}'s board \\\\ Score: {self.score}")
+        print(f"\n {self.name}'s board \\\\ Score: {self.score}")
         column_num = [column for column in range(len(self.board))]
         print(" ¤", *column_num)
         row_num = 0
         for row in self.board:
             print("", row_num, *row)
             row_num += 1
-        print()
 
     def validate_guess(self, data):
         """
@@ -92,26 +92,26 @@ class Battlefield:
                 raise ValueError(
                     f"Biggest number you can guess is {self.board_size - 1}. You guessed: {data}")
         except ValueError as e:
-            print(f"\n Invalid input: {e}. Please try again\n")
+            print(f"\n Invalid input: {e}. Please try again")
             return False
         return True
 
     def check_guesses(self, data):
         """
-        Checks if the users guess already have been guessed
+        Checks if the guess already have been guessed
         """
         try:
             if data in self.guesses:
                 raise ValueError(
                     f"You have already guessed: {data}")
         except ValueError as e:
-            print(f" Invalid input: {e}. Please try again\n")
+            print(f"\n Invalid input: {e}. Please try again")
             return False
         return True
 
     def calculate_hit(self, data):
         """
-        Calculate if the guess is correct or not
+        Calculates if the guess is correct or not
         Appends the guess to the llist of guesses
         """
         if data in self.ships:
@@ -126,12 +126,12 @@ class Battlefield:
     def player_guess(self):
         """
         Takes input from the user and calls functions to
-        validate input, check guess and calculate hit or miss
+        validate input, check guesses and calculates hits and misses
         """
         while True:
             while True:
                 print(self.ships)
-                y = input(" Guess a row: ")
+                y = input("\n Guess a row: ")
                 if self.validate_guess(y):
                     break
             while True:
@@ -139,7 +139,7 @@ class Battlefield:
                 if self.validate_guess(x):
                     break
             guess = [int(y), int(x)]
-            print(f" You have guessed coordinates: {y}, {x}\n")
+            print(f" You have guessed coordinates: {y}, {x}")
             if self.check_guesses(guess):
                 break
         if self.calculate_hit(guess):
@@ -149,8 +149,8 @@ class Battlefield:
 
     def computer_guess(self):
         """
-        Generate a random coordinates and calls
-        function to calculate hit or miss
+        Generates a random coordinate and calls
+        a function to calculate hits and misses
         """
         while True:
             y = randint(0, self.board_size - 1)
@@ -167,58 +167,56 @@ class Battlefield:
         """
         Prints out if someone hit and gives score
         """
-        print(f" {self.name} hit!\n")
+        print(f"\n {self.name} hit!")
         self.score += 1
 
     def miss(self):
         """
         Prints out if someone missed
         """
-        print(f" {self.name} missed!\n")
+        print(f"\n {self.name} missed!")
 
     def check_score(self):
         """
         Checks if someone sunk all ships
         """
         if self.score >= self.num_ships:
-            print(f" {self.name} wins the game!\n")
+            print(f"\n {self.name} wins the game!")
             return True
 
 
 def main():
     """
-    Calls all functions to run the game loop
+    Holds while loops and calls functions to run the game
     """
     print(messages.welcome)
+
     while True:
         print("\n Do you want to read the game rules?")
-        read_gamerules = input(" Yes or No?: ").lower()
+        read_gamerules = input("\n Yes or No?: ").lower()
         if validate_answer(read_gamerules):
-            print()
             break
     if read_gamerules == "yes":
-        print(" GAME RULES")
+        print("\n GAME RULES")
         print(" The object of Battleship is to try and sink all of your")
         print(" opponents ships before they sink all of yours.")
         print(" Try to hit them by entering coordinates on the board.")
         print(" You win When all your opponents ships have been hit.")
-        print(" @ = Your ships  X = Ships that been hit  / = Missed shots\n")
+        print(" The coordinates start at '0', so top left corner is 0, 0")
+        print(" @ = Your ships  X = Ships that been hit  / = Missed shots")
 
-    username = input(" Enter your username: ")
-    print()
+    username = input("\n Enter your username: ")
 
     while True:
-        print(" Choose the size of the battlefield you want to play on")
+        print("\n Choose the size of the battlefield")
         board_size = input(" Enter a number between 3-6: ")
         if validate_input(board_size, 3, 6):
-            print()
             break
 
     while True:
-        print(" Choose how manny battleships you want each player to have")
+        print("\n Choose how manny battleships you want")
         num_ships = input(" Enter a number between 2-8: ")
         if validate_input(num_ships, 2, 8):
-            print()
             break
 
     global computer
@@ -227,9 +225,9 @@ def main():
     user = Battlefield(username, board_size, num_ships, "player")
 
     user.add_ships()
-    user.create_board()
     computer.add_ships()
-    computer.create_board()
+    user.render_board()
+    computer.render_board()
 
     while True:
         if computer.player_guess():
@@ -242,8 +240,8 @@ def main():
         else:
             computer.miss()
 
-        user.create_board()
-        computer.create_board()
+        user.render_board()
+        computer.render_board()
 
         if user.check_score():
             print(messages.win)
@@ -251,12 +249,11 @@ def main():
         elif computer.check_score():
             print(messages.lose)
             break
-    
+
     while True:
         print("\n Do you want to play again?")
         play_again = input(" Yes or No?: ").lower()
         if validate_answer(play_again):
-            print()
             break
 
     if play_again == "yes":
@@ -272,15 +269,16 @@ noted bugs
 """
 
 
-#Någon skillnad på if och elif
-#Points is given to computer instead of the player
+# Någon skillnad på if och elif
+# Points is given to computer instead of the player
 """
 def give_score(self):
         print(f"{self.name} hit!")
         self.score += 1
 """
-#Also says computer hit when player hit
-#Hits didnt register in the guesses list Needed to append for both since i did return
-#column numbers went up to 7 for all board sizes
-#you can guess several 0's
-#computer could guess same guess
+# Also says computer hit when player hit
+# Hits didnt register in the guesses list Needed to
+# append for both since i did return
+# column numbers went up to 7 for all board sizes
+# you can guess several 0's
+# computer could guess same guess
