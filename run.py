@@ -124,7 +124,7 @@ class Battlefield:
 
     def player_guess(self):
         """
-        Takes input from the user and calls functions to 
+        Takes input from the user and calls functions to
         validate input, check guess and calculate hit or miss
         """
         while True:
@@ -161,7 +161,7 @@ class Battlefield:
             return True
         else:
             return False
-    
+
     def hit(self):
         """
         Prints out if someone hit and gives score
@@ -184,11 +184,10 @@ class Battlefield:
             return True
 
 
-
 def main():
     """
     Calls all functions to run the game loop
-    """ 
+    """
     print("--------------------------------------------------------------------------------")
     print("--------------------------------------------------------------------------------")
     print("               _      ________   _________  __  _______  __________  ")
@@ -206,11 +205,13 @@ def main():
     print()
     print("--------------------------------------------------------------------------------")
     print("--------------------------------------------------------------------------------")
-
+    print()
     print(" GAME RULES")
-    print(" placeholder placeholder placeh olde rplaceholde rplaceholderpla cehol ")
-    print(" placehol derplaceholderp laceholderplaceholderplaceh olderplac eholder")
-    print("")
+    print(" The object of Battleship is to try and sink all of the")
+    print(" other player's ships before they sink all of yours.")
+    print(" You try and hit them by entering coordinates on the board.")
+    print(" @ = Your ships  X = Ships that been hit  / = Missed shots")
+    print(" ")
     username = input(" Enter your username: ")
     print()
 
@@ -220,7 +221,6 @@ def main():
         if validate_input(board_size, 3, 6):
             print()
             break
-
 
     while True:
         print(" Choose how manny battleships you want each player to have")
@@ -233,7 +233,7 @@ def main():
     computer = Battlefield("Computer", board_size, num_ships, "comp")
     global user
     user = Battlefield(username, board_size, num_ships, "player")
-    
+
     user.add_ships()
     user.create_board()
     computer.add_ships()
@@ -277,7 +277,7 @@ def main():
             break
     
     while True:
-        print(" Do you want to play again?")
+        print(" \nDo you want to play again?")
         play_again = input(" Yes or No?: ").lower()
         if validate_play_again(play_again):
             print()
