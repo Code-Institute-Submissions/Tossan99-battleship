@@ -207,7 +207,7 @@ def main():
     if read_gamerules == "yes":
         print(messages.rules)
 
-    username = input("\n Enter your username: \n")
+    username = input("\n Enter your username: ")
 
     while True:
         print("\n Choose the size of the battlefield")
