@@ -22,7 +22,7 @@ def validate_input(data, minn, maxx):
     return True
 
 
-def validate_play_again(data):
+def validate_answer(data):
     """
     Validates the users input for play again
     """
@@ -205,13 +205,21 @@ def main():
     print()
     print("--------------------------------------------------------------------------------")
     print("--------------------------------------------------------------------------------")
-    print()
-    print(" GAME RULES")
-    print(" The object of Battleship is to try and sink all of the")
-    print(" other player's ships before they sink all of yours.")
-    print(" You try and hit them by entering coordinates on the board.")
-    print(" @ = Your ships  X = Ships that been hit  / = Missed shots")
-    print(" ")
+    while True:
+        print(" \nDo you want to read the game rules?")
+        read_gamerules = input(" Yes or No?: ").lower()
+        if validate_answer(x):
+            print()
+            break
+    if read_gamerules == "yes":
+        print(" GAME RULES")
+        print(" The object of Battleship is to try and sink all of the")
+        print(" other player's ships before they sink all of yours.")
+        print(" Try to hit them by entering coordinates on the board.")
+        print(" When all your opponents ships have been hit, you win.")
+        print(" @ = Your ships  X = Ships that been hit  / = Missed shots")
+        print(" ")
+
     username = input(" Enter your username: ")
     print()
 
@@ -279,7 +287,7 @@ def main():
     while True:
         print(" \nDo you want to play again?")
         play_again = input(" Yes or No?: ").lower()
-        if validate_play_again(play_again):
+        if validate_answer(play_again):
             print()
             break
 
