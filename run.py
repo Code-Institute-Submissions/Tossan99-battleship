@@ -176,6 +176,7 @@ class Battlefield:
 
     def check_score(self):
         if self.score >= self.num_ships:
+            print(f"{self.name} wins the game!\n")
             return True
 
 
@@ -183,8 +184,15 @@ class Battlefield:
 def main():
     """
     Calls all functions to run the game loop
-    """
-    print("Welcome to Battleships")
+    """ 
+    print(" _      ________   _________  __  _______  __________    __________  ___________   _  ______")
+    print("| | /| / / __/ /  / ___/ __ \/  |/  / __/ /_  __/ __ \  /_  __/ __ \/ __/ __/ _ | / |/ / __/")
+    print("| |/ |/ / _// /__/ /__/ /_/ / /|_/ / _/    / / / /_/ /   / / / /_/ /\ \_\ \/ __ |/    /\ \ ")
+    print("|__/|__/___/____/\___/\____/_/  /_/___/   /_/  \____/   /_/  \____/___/___/_/ |_/_/|_/___/\n")
+    print("   ___  ___ ______________   __________ _________    ________   __  _______  __")
+    print("  / _ )/ _ /_  __/_  __/ /  / __/ __/ // /  _/ _ \  / ___/ _ | /  |/  / __/ / /")
+    print(" / _  / __ |/ /   / / / /__/ _/_\ \/ _  // // ___/ / (_ / __ |/ /|_/ / _/  /_/ ")
+    print("/____/_/ |_/_/   /_/ /____/___/___/_//_/___/_/     \___/_/ |_/_/  /_/___/ (_)\n")  
     username = input("Enter your username: ")
     print()
 
@@ -230,10 +238,8 @@ def main():
         computer.create_board()
 
         if user.check_score():
-            print("You Won!\n")
             break
         elif computer.check_score():
-            print("You Lost!\n")
             break
     
     while True:
@@ -246,7 +252,10 @@ def main():
     if play_again == "yes":
         main()
     if play_again == "no":
-        print("Thank you for playing Battleships!\n")
+        print(" ________ _____   _  ____ __  __  ______  __  __  ________  ___    ___  __   _____  _______  _______  __ ")
+        print("/_  __/ // / _ | / |/ / //_/  \ \/ / __ \/ / / / / __/ __ \/ _ \  / _ \/ /  / _ \ \/ /  _/ |/ / ___/ / /")
+        print(" / / / _  / __ |/    / ,<      \  / /_/ / /_/ / / _// /_/ / , _/ / ___/ /__/ __ |\  // //    / (_ / /_/  ")
+        print("/_/ /_//_/_/ |_/_/|_/_/|_|     /_/\____/\____/ /_/  \____/_/|_| /_/  /____/_/ |_|/_/___/_/|_/\___/ (_) \n")
 
 main()
 
