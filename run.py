@@ -17,7 +17,7 @@ def validate_input(data, minn, maxx):
             raise ValueError(
                 f"Biggest number you can choose is {maxx}. You have entered: {data}")
     except ValueError as e:
-        print(f"\nInvalid input: {e}. Please try again \n")
+        print(f"\n  Invalid input: {e}. Please try again \n")
         return False
     return True
 
@@ -31,7 +31,7 @@ def validate_play_again(data):
             raise ValueError(
                 f"You can only answer 'yes' or 'no'. You have answered: {data}")
     except ValueError as e:
-        print(f"\nInvalid input: {e}. Please try again \n")
+        print(f"\n  Invalid input: {e}. Please try again \n")
         return False
     return True
 
@@ -70,12 +70,12 @@ class Battlefield:
         """
         Creates the battlefield and uppdates it each turn
         """
-        print(f"{self.name}'s board\nScore: {self.score}")
+        print(f"  {self.name}'s board\n  Score: {self.score}")
         column_num = [column for column in range(len(self.board))]
-        print("¤", *column_num)
+        print("  ¤", *column_num)
         row_num = 0
         for row in self.board:
-            print(row_num, *row)
+            print(" ", row_num, *row)
             row_num += 1
         print()
 
@@ -91,7 +91,7 @@ class Battlefield:
                 raise ValueError(
                     f"Biggest number you can guess is {self.board_size - 1}. You guessed: {data}")
         except ValueError as e:
-            print(f"\nInvalid input: {e}. Please try again\n")
+            print(f"\n  Invalid input: {e}. Please try again\n")
             return False
         return True
 
@@ -104,7 +104,7 @@ class Battlefield:
                 raise ValueError(
                     f"You have already guessed: {data}")
         except ValueError as e:
-            print(f"Invalid input: {e}. Please try again\n")
+            print(f"  Invalid input: {e}. Please try again\n")
             return False
         return True
 
@@ -130,17 +130,15 @@ class Battlefield:
         while True:
             while True:
                 print(self.ships)
-                y = input("Guess a row: ")
+                y = input("  Guess a row: ")
                 if self.validate_guess(y):
-                    print()
                     break
             while True:
-                x = input("Guess a column: ")
+                x = input("  Guess a column: ")
                 if self.validate_guess(x):
-                    print()
                     break
             guess = [int(y), int(x)]
-            print(f"You have guessed coordinates: {y}, {x}\n")
+            print(f"  You have guessed coordinates: {y}, {x}\n")
             if self.check_guesses(guess):
                 break
         if self.calculate_hit(guess):
@@ -165,15 +163,24 @@ class Battlefield:
             return False
     
     def hit(self):
-        print(f"{self.name} hit!\n")
+        """
+        Prints out if someone hit and gives score
+        """
+        print(f"  {self.name} hit!\n")
         self.score += 1
 
     def miss(self):
-        print(f"{self.name} missed!\n")
+        """
+        Prints out if someone missed
+        """
+        print(f"  {self.name} missed!\n")
 
     def check_score(self):
+        """
+        Checks if someone sunk all ships
+        """
         if self.score >= self.num_ships:
-            print(f"{self.name} wins the game!\n")
+            print(f"  {self.name} wins the game!\n")
             return True
 
 
@@ -196,29 +203,28 @@ def main():
     print("   / _ )/ _ /_  __/_  __/ /  / __/ __/ // /  _/ _ \  / ___/ _ | /  |/  / __/ / /")
     print("  / _  / __ |/ /   / / / /__/ _/_\ \/ _  // // ___/ / (_ / __ |/ /|_/ / _/  /_/ ")
     print(" /____/_/ |_/_/   /_/ /____/___/___/_//_/___/_/     \___/_/ |_/_/  /_/___/ (_)  ")
+    print()
     print("--------------------------------------------------------------------------------")
     print("--------------------------------------------------------------------------------")
 
-    print("GAME RULES")
-    print("placeholder placeholder placeh olde rplaceholde rplaceholderpla cehol ")
-    print("placehol derplaceholderp laceholderplaceholderplaceh olderplac eholder")
+    print("  GAME RULES")
+    print("  placeholder placeholder placeh olde rplaceholde rplaceholderpla cehol ")
+    print("  placehol derplaceholderp laceholderplaceholderplaceh olderplac eholder")
     print("")
-    username = input("Enter your username: ")
+    username = input("  Enter your username: ")
     print()
 
     while True:
-        print("Choose the size of the battlefield you want to play on")
-        board_size = input(
-            "Enter a number between 4-8: ")
-        if validate_input(board_size, 4, 8):
+        print("  Choose the size of the battlefield you want to play on")
+        board_size = input("  Enter a number between 3-6: ")
+        if validate_input(board_size, 3, 6):
             print()
             break
 
 
     while True:
-        print("Choose how manny battleships you want each player to have")
-        num_ships = input(
-            "Enter a number between 2-8: ")
+        print("  Choose how manny battleships you want each player to have")
+        num_ships = input("  Enter a number between 2-8: ")
         if validate_input(num_ships, 2, 8):
             print()
             break
@@ -253,8 +259,8 @@ def main():
             break
     
     while True:
-        print("Do you want to play again?")
-        play_again = input("yes or no?: ").lower()
+        print("  Do you want to play again?")
+        play_again = input("  Yes or No?: ").lower()
         if validate_play_again(play_again):
             print()
             break
@@ -272,6 +278,7 @@ def main():
         print("           / __/ __ \/ _ \  / _ \/ /  / _ \ \/ /  _/ |/ / ___/ / / ")
         print("          / _// /_/ / , _/ / ___/ /__/ __ |\  // //    / (_ / /_/  ")
         print("         /_/  \____/_/|_| /_/  /____/_/ |_|/_/___/_/|_/\___/ (_)   ")
+        print()
         print("--------------------------------------------------------------------------------")
         print("--------------------------------------------------------------------------------")
 
