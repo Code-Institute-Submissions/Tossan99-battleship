@@ -10,15 +10,15 @@ def validate_input(data, min, max):
     try:
         if not data.isdigit():
             raise ValueError(
-                f"You can only enter one whole number. You have entered: {data}")
+                f"You can only enter one whole number.\n You have entered: {data}")
         if int(data) < min:
             raise ValueError(
-                f"Smallest number you can enter is {min}. You have entered: {data}")
+                f"Smallest number you can enter is {min}.\n You have entered: {data}")
         if int(data) > max:
             raise ValueError(
-                f"Biggest number you can enter is {max}. You have entered: {data}")
+                f"Biggest number you can enter is {max}.\n You have entered: {data}")
     except ValueError as e:
-        print(f"\n Invalid input: {e}. Please try again")
+        print(f"\n Invalid input: {e}. Please try again.")
         return False
     return True
 
@@ -30,9 +30,9 @@ def validate_answer(data):
     try:
         if data != "yes" and data != "no":
             raise ValueError(
-                f"You can only answer 'yes' or 'no'. You have answered: {data}")
+                f"You can only answer 'yes' or 'no'. \n You have answered: {data}")
     except ValueError as e:
-        print(f"\n Invalid input: {e}. Please try again")
+        print(f"\n Invalid input: {e}. Please try again.")
         return False
     return True
 
@@ -87,12 +87,12 @@ class Battlefield:
         try:
             if not data.isdigit():
                 raise ValueError(
-                    f"You can only guess one whole number. You have entered: {data}")
+                    f"You can only enter one whole number.\n You have entered: {data}")
             if int(data) > self.board_size - 1:
                 raise ValueError(
-                    f"Biggest number you can guess is {self.board_size - 1}. You guessed: {data}")
+                    f"Biggest number you can enter is {self.board_size - 1}.\n You entered: {data}")
         except ValueError as e:
-            print(f"\n Invalid input: {e}. Please try again")
+            print(f"\n Invalid input: {e}. Please try again.")
             return False
         return True
 
@@ -105,7 +105,7 @@ class Battlefield:
                 raise ValueError(
                     f"You have already guessed: {data}")
         except ValueError as e:
-            print(f"\n Invalid input: {e}. Please try again")
+            print(f"\n Invalid input: {e}. Please try again.")
             return False
         return True
 
@@ -158,6 +158,7 @@ class Battlefield:
             guess = [y, x]
             if guess not in self.guesses:
                 break
+        print(f"\n Computer have guessed coordinates: {y}, {x}")
         if self.calculate_hit(guess):
             return True
         else:
@@ -178,7 +179,7 @@ class Battlefield:
 
     def check_score(self):
         """
-        Checks if someone sunk all ships
+        Checks if someone have sunk all the ships
         """
         if self.score >= self.num_ships:
             print(f"\n {self.name} wins the game!")
@@ -197,13 +198,7 @@ def main():
         if validate_answer(read_gamerules):
             break
     if read_gamerules == "yes":
-        print("\n GAME RULES")
-        print(" The object of Battleship is to try and sink all of your")
-        print(" opponents ships before they sink all of yours.")
-        print(" Try to hit them by entering coordinates on the board.")
-        print(" You win When all your opponents ships have been hit.")
-        print(" The coordinates start at '0', so top left corner is 0, 0")
-        print(" @ = Your ships  X = Ships that been hit  / = Missed shots")
+        print(messages.rules)
 
     username = input("\n Enter your username: ")
 
