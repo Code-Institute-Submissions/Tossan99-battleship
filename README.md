@@ -1,17 +1,22 @@
 # TOSSANS BATTLESHIP GAME
 
 
+![Welcome page](readme-images/welcome.JPG)
 
-Visit [TOSSANS BATTLESHIP GAME](https://tossans-battleships-game-b3734a738de1.herokuapp.com/)
+Tossans battleship game is for ....
 
-![](assets/readme-images/welcome.jpg)
-
----
-
-## CONTENTS
-
+Visit [Tossans battleship game](https://tossans-battleships-game-b3734a738de1.herokuapp.com/)
 
 ---
+
+## CONTENTS 
+
+
+---
+## Intoduction
+This game lets you set up customizable playing field for playing the game Battleship. You will play against a computer so the game is 
+
+## Project
 
 ## Design
 
