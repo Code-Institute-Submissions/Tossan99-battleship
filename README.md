@@ -57,29 +57,72 @@ As the developer I want:
 ### Welcome Page 
 ![Welcome page](readme-images/welcome.JPG)
 
-When the game is ran it immediately prints this welcome message and asks for input.
+When the game is ran it immediately displays this welcome message and asks for input.
 
 ### Game Rules
 ![Game Rules](readme-images/rules.JPG)
 
-Here the game asks if you want to read the game rules. If you enter "Yes" they will be printed out for you.
+In this section the game asks if you want to read the game rules. If you enter "Yes" the rules will be display for you. 
+
+This input is checked with a function that validates in the input. If the user give input that isn't asked for an error message will be printed.
 
 ### Username
 ![Username](readme-images/username.JPG)
 
+In this section the game asks for a username. There are no validation checks for this input so the user can be as creative as they want.
+
+
 ### Customizable Board
+![Customizable Board](readme-images/setup1.JPG)
+
+In this section the game asks for input to set up the board. The user can choose to have a board from 3x3 to 6x6 and 2 to 8 battleships. 
+
+This input is checked with a function that validates in the input. If the user give input that isn't asked for an error message will be printed.
+
+### Battlefield
+![Battlefield](readme-images/board.JPG)
+
+In this section the battlefield is displayed to the user. The board displays the users username, score, ships and misses/hits from the player and computer.
+
+### Coordinates Input
+![Coordinates Input](readme-images/guess.JPG)
+
+In this section the game asks for the user to guess a coordinate to take a shot at the opponents board. This is done by entering a number for row and column. 
+
+This input is checked with a function that validates in the input. If the user give input that isn't asked for an error message will be printed.
+
+### Win and Lose
+![Win](readme-images/win.JPG)
+![Lose](readme-images/lose.JPG)
+
+This section is displayed when all of someones ships have been hit.
+
+### Replay
+![Replay](readme-images/playagain.JPG)
+
+This section asks the user if they want to play again. If the user answers "Yes" the game will run again and if the user answers "no" it will exit the game and display the "Thank you for playing" message. 
+
+This input is checked with a function that validates in the input. If the user give input that isn't asked for an error message will be printed.
+
+![Thank You](readme-images/thankyou.JPG)
 
 ### Favicon
-
-The page have a simple favicon of a blue flag
-
-![Favicon](assets/readme-images)
-
-### Logo
-
-![Logo](assets/readme-images)
+The game have a simple favicon of a battleship
+![Favicon](favicon.png)
 
 ### Features Left to Implement
+* Different sizes for ships
+
+At the moment all ships consists of 1x1 squares. I would like to fin a way to make ships 2x1, 3x1, 2x2 and so on...
+
+* Highscore
+
+I would like to link a google sheet to the game and store user data for a highscore page that can be viewed in the game
+
+* Customizable option for both user and computer
+
+In the games current state the user can only customize both boards at the same time. I would like to add the option to customize the boards individually.
+
 
 ### Accessibility
 
