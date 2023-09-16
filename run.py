@@ -1,6 +1,16 @@
 from random import randint
 import random
 import messages
+import os
+
+
+def clear_terminal():
+    """
+    Clears the terminal
+    From:
+    https://stackoverflow.com/questions/2084508/clear-terminal-in-python
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def validate_input(data, min, max):
@@ -145,6 +155,7 @@ class Battlefield:
                 x = input(" Guess a column: ")
                 if self.validate_guess(x):
                     break
+            clear_terminal()
             guess = [int(y), int(x)]
             print(f" You have guessed coordinates: {y}, {x}")
             if self.check_guesses(guess):
@@ -203,11 +214,15 @@ def main():
         print("\n Do you want to read the game rules?")
         read_gamerules = input("\n Yes or No?: ").lower()
         if validate_answer(read_gamerules):
+            clear_terminal()
             break
+
     if read_gamerules == "yes":
         print(messages.rules)
 
     username = input("\n Enter your username: ")
+
+    clear_terminal()
 
     while True:
         print("\n Choose the size of the battlefield")
@@ -221,6 +236,8 @@ def main():
         if validate_input(num_ships, 2, 8):
             break
 
+    clear_terminal()
+
     computer = Battlefield("Computer", board_size, num_ships, "comp")
     user = Battlefield(username, board_size, num_ships, "player")
 
@@ -230,6 +247,9 @@ def main():
     computer.render_board()
 
     while True:
+        """
+        Runs the game loop until there is no ships left
+        """
         if computer.player_guess():
             user.hit()
         else:
@@ -257,8 +277,10 @@ def main():
             break
 
     if play_again == "yes":
+        clear_terminal()
         main()
     if play_again == "no":
+        clear_terminal()
         print(messages.thank_you)
 
 
