@@ -3,8 +3,6 @@
 
 ![Welcome page](readme-images/welcome.JPG)
 
-Tossans battleship game is for ....
-
 Visit [Tossans battleship game](https://tossans-battleships-game-b3734a738de1.herokuapp.com/)
 
 ---
@@ -14,11 +12,38 @@ Visit [Tossans battleship game](https://tossans-battleships-game-b3734a738de1.he
 
 ---
 ## Intoduction
-This game lets you set up customizable playing field for playing the game Battleship. You will play against a computer so the game is 
+Tossans battleship game is a Python terminal game. It runs on a mock terminal deployed to Heroku. 
 
-## Project
+It is based on the classic board game “battleships”. A guessing game for two players that is played on ruled grids on which each player place their ships on. The locations of the ships are concealed for the other player. Players alternate turns calling "shots" at the other player's ships, and the objective of the game is to destroy the opposing player's fleet.
+
+## The User Experience
+
+### Site Purpose
+* To offer a simple and fun game to the users.
+
+### User Goals
+As a user i want:
+
+* To have fun while being challenged.
+
+* To learn and understand the game.
+
+* The game to offer replay value with alot of customizable options.
+
+* To easily choose available options and have a clear response to my actions.
+
+## Project Goals 
+As the developer I want:
+
+* Users to meet their goals above.
+
+* The game to be functional and without errors.
 
 ## Design
+
+### Flow Chart
+
+[Figma](https://www.figma.com/) was used to plan the flow of the program
 
 ### Wireframes
 
