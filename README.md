@@ -123,10 +123,29 @@ I would like to link a google sheet to the game and store user data for a highsc
 
 In the games current state the user can only customize both boards at the same time. I would like to add the option to customize the boards individually.
 
+---
 
-### Accessibility
+## Bugs
 
 ---
+
+## Technologies Used
+* Languages: 
+    * Python.
+* Libraries:
+    * random 
+        - Used to select a random word.
+    * os
+        - Used for its `clear` tool, to clear the terminal window.
+* Others:
+    * Github
+        - To store the repository for submission.
+    * Heroku
+        - To deploy a live version of the terminal.
+    * Lucid 
+        - To make a flowchart for preparation to project.
+    * Fancy text pro
+        - To make word art. 
 
 ## Deployment & Local Development
 
@@ -142,26 +161,6 @@ The site is deployed using GitHub Pages. Visit the deployed site [here](https://
 6. Choose which folder to deploy from, usually "/root".
 7. Click "Save", then wait for it to be deployed. It can take some time for the page to be fully deployed.
 8. Your URL will be displayed above "Source".
-
-### Local Development
-
-#### How to Fork
-
-To fork the repository:
-
-1. Log in (or sign up) to Github.
-2. Go to the repository for this project, [Flag Quiz](https://github.com/Tossan99/flag-quiz2.git).
-3. Click the Fork button in the top right corner.
-
-#### How to Clone
-
-To clone the repository:
-
-1. Log in (or sign up) to GitHub.
-2. Go to the repository for this project, [Flag Quiz](https://github.com/Tossan99/flag-quiz2.git).
-3. Click on the code button, select whether you would like to clone with HTTPS, SSH or GitHub CLI and copy the link shown.
-4. Open the terminal in your code editor and change the current working directory to the location you want to use for the cloned directory.
-5. Type 'git clone' into the terminal and then paste the link you copied in step 3. Press enter.
 
 ---
 
