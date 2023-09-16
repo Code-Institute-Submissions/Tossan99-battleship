@@ -7,14 +7,12 @@ Visit [Tossans battleship game](https://tossans-battleships-game-b3734a738de1.he
 
 ---
 
-## CONTENTS 
-
-
----
-## Intoduction
+## Introduction
 Tossans battleship game is a Python terminal game. It runs on a mock terminal deployed to Heroku. 
 
 It is based on the classic board game “battleships”. A guessing game for two players that is played on ruled grids on which each player place their ships on. The locations of the ships are concealed for the other player. Players alternate turns calling "shots" at the other player's ships, and the objective of the game is to destroy the opposing player's fleet.
+
+---
 
 ## The User Experience
 
@@ -32,6 +30,8 @@ As a user i want:
 
 * To easily choose available options and have a clear response to my actions.
 
+---
+
 ## Project Goals 
 As the developer I want:
 
@@ -39,11 +39,13 @@ As the developer I want:
 
 * The game to be functional and without errors.
 
+---
+
 ## Design
 
 ### Flow Chart
 
-[Figma](https://www.figma.com/) was used to plan the flow of the program.
+* [Figma](https://www.figma.com/) was used to plan the flow of the program.
 
 ![Flow chart](readme-images/flowchart.JPG)
 
@@ -106,10 +108,6 @@ This input is checked with a function that validates in the input. If the user g
 
 ![Thank You](readme-images/thankyou.JPG)
 
-### Favicon
-The game have a simple favicon of a battleship
-![Favicon](favicon.png)
-
 ### Features Left to Implement
 * Different sizes for ships
 
@@ -126,6 +124,13 @@ In the games current state the user can only customize both boards at the same t
 ---
 
 ## Bugs
+* Points given to wrong player
+
+The biggest and almost only bug i experienced was that points and hits was assigned to the wrong player. The solution was to call the functions from the opposite player class instance, return true/false and then call the function from the correct function from the player guessed the coordinates.
+
+* clear_terminal() doesn't clear the whole terminal.
+
+Couldnt find a solution to this bug
 
 ---
 
@@ -147,40 +152,44 @@ In the games current state the user can only customize both boards at the same t
     * Fancy text pro
         - To make word art. 
 
-## Deployment & Local Development
+---
 
-### Deployment
+## Deployment
 
-The site is deployed using GitHub Pages. Visit the deployed site [here](https://tossan99.github.io/flag-quiz2/). To deploy using GitHub pages:
+This program was deployed to [Heroku](https://heroku.com/). You can visit the live site [here](https://py-hangman-py.herokuapp.com/).
 
-1. login or Sign Up to GitHub.
-2. open the project repository.
-3. Click on "Settings" on the navigation bar under the repository title.
-4. Click on "Pages" in the left hand navigation panel.
-5. Under "Source", choose which branch to deploy. This should be Main for newer repositories (older repositories may still use Master).
-6. Choose which folder to deploy from, usually "/root".
-7. Click "Save", then wait for it to be deployed. It can take some time for the page to be fully deployed.
-8. Your URL will be displayed above "Source".
+**To deploy a copy of this project for your self follow these steps:**
+1. Fork or clone this repository.
+2. Create a new app on Heroku.
+3. Ensure that the buildpacks are set to `Python` and `NodeJS`.
+4. Link the app on Heroku to the repository.
+
+**Deployment:**
+1. Once the Config Vars are set, click Deploy.
+2. Scroll to the bottom of the deploy options and click the **Deploy Branch** button. Optionally you can also **Enable Automatic Deploys**.
+3. The site will now be live.
 
 ---
 
 ## Testing
 
-Go to this separate [testing page](#) to read about testing
+### Automated testing
+I used my school Code Institutes own validator https://pep8ci.herokuapp.com/ to check the code automated. I tested run.py, words.py, word_art.py and hangman_stages.py and the code had no errors or warnings in it.
 
-### Validator testing
+![Image of validator](readme-images/no-errors.JPG)
 
-- Python3
-  - All html pages have passed through the [Python3 validator]() 
+### Manual Testing
 
-### Unfixed Bugs
+I been testing the code many times by my own in the local terminal and in the mock terminal on the deployed site Heroku.
+- Tried to put invalid input.
+
+- Navigated through the whole game while trying out diffrent of options.
+
+![Manual Testing](readme-images/invalid.JPG)
 
 ---
 
 ## Credits
 
-### Code Used
-
-### Content
-
-### Media
+* I used wordart from [Fancy text pro](https://www.fancytextpro.com/BigTextGenerator?fbclid=IwAR0TsTKLRY91w8ggGxdgfZp6Cu-R4HP2SjAemqdaCRtT86b_tIwp-WeF3u8).
+* I learned about how to clear the terminal window from Stack Overflows [thread](https://stackoverflow.com/questions/2084508/clear-terminal-in-python).
