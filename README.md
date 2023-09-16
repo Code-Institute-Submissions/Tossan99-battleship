@@ -43,14 +43,31 @@ As the developer I want:
 
 ### Flow Chart
 
-[Figma](https://www.figma.com/) was used to plan the flow of the program
+[Figma](https://www.figma.com/) was used to plan the flow of the program.
 
-### Wireframes
+![Flow chart](readme-images/flowchart.JPG)
+
+### Titles and Headings
+* All titles and headings was created with [Fancy Text](https://www.fancytextpro.com/BigTextGenerator).
 
 ---
 
 ## Features
 
+### Welcome Page 
+![Welcome page](readme-images/welcome.JPG)
+
+When the game is ran it immediately prints this welcome message and asks for input.
+
+### Game Rules
+![Game Rules](readme-images/rules.JPG)
+
+Here the game asks if you want to read the game rules. If you enter "Yes" they will be printed out for you.
+
+### Username
+![Username](readme-images/username.JPG)
+
+### Customizable Board
 
 ### Favicon
 
