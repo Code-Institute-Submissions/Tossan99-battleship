@@ -147,7 +147,6 @@ class Battlefield:
         """
         while True:
             while True:
-                print(self.ships)
                 y = input("\n Guess a row: ")
                 if self.validate_guess(y):
                     break
