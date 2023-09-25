@@ -174,7 +174,7 @@ This program was deployed to [Heroku](https://heroku.com/). You can visit the li
 ## Testing
 
 ### Automated testing
-I used my school Code Institutes own validator https://pep8ci.herokuapp.com/ to check the code automated. I tested run.py, words.py, word_art.py and hangman_stages.py and the code had no errors or warnings in it.
+I used Code Institutes own validator https://pep8ci.herokuapp.com/ to check the code and the code had no errors or warnings in it.
 
 ![Image of validator](readme-images/no-errors.JPG)
 
